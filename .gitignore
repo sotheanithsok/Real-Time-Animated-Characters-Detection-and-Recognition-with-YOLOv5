@@ -112,3 +112,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+datasets/
+frames/
+videos/
+yolov5/
