@@ -116,4 +116,5 @@ dmypy.json
 datasets/
 frames/
 videos/
+models/
 yolov5/

@@ -37,6 +37,15 @@ def yolov5(
     dst = yolov5_path
     dir_util.copy_tree(str(src), str(dst))
 
+    # Stop yolov5 from checking update with github
+    with open (yolov5_path/'train.py', 'r+') as f:
+        lines = f.readlines()
+        for i, line  in enumerate(lines):
+            if 'check_git_status()' in line:
+                lines[i] = lines[i].replace('check_git_status()', '#check_git_status()')
+        f.seek(0)
+        f.writelines(lines)
+
     # Remove unnecessary files
     dir_util.remove_tree(src)
     yolov5_zip_path.unlink()
