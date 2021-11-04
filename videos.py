@@ -2,28 +2,35 @@ import argparse
 from distutils import dir_util
 from pathlib import Path
 from pytube import YouTube
+import json
 
 ROOT = Path(__file__).parent
 
 
 def videos(
     overwrite: bool = False,
-    urls: list[str] = ["https://youtu.be/rilFfbm7j8k", "https://youtu.be/cqyziA30whE"],
-    filenames: list[str] = ["train.mp4", "test.mp4"],
-    videos_path: Path = ROOT / "videos",
 ) -> None:
 
+    # Load settings.json
+    with open(ROOT / "settings.json") as f:
+        settings = json.load(f)
+
+    # Create varaibles
+    videos = ROOT / settings["videos"]
+    urls = settings["vidoes_urls"]
+    names = settings["vidoes_names"]
+
     # Remove all files in directory if overwrite is true
-    if overwrite and videos_path.exists():
-        dir_util.remove_tree(str(videos_path))
+    if overwrite and videos.exists():
+        dir_util.remove_tree(str(videos))
 
     # Create the directory if it doesn't exist
-    videos_path.mkdir(exist_ok=True)
+    videos.mkdir(exist_ok=True)
 
     # Download all vidoes
-    for url, filename in zip(urls, filenames):
+    for url, name in zip(urls, names):
         stream = YouTube(url).streams.get_highest_resolution()
-        stream.download(videos_path, filename)
+        stream.download(videos, name)
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:
