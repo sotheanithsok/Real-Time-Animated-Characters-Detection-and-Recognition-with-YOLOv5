@@ -10,7 +10,7 @@ import argparse
 ROOT = Path(__file__).parent
 
 
-def train(overwrite: bool = False, visualize: bool = False):
+def train(overwrite: bool = False, visualize: bool = False, resume: bool = False):
     # Load settings.json
     with open(ROOT / "settings.json") as f:
         settings = json.load(f)
@@ -33,7 +33,7 @@ def train(overwrite: bool = False, visualize: bool = False):
     for dataset in datasets:
         # Hyperparameter
         pretrained_weights = "yolov5s.pt"
-        epochs = 99999
+        epochs = 10000
         batch_size = 32
         patience = 100
 
@@ -51,7 +51,8 @@ def train(overwrite: bool = False, visualize: bool = False):
             name="train",
             exist_ok=True,
             patience=patience,
-            save_period = 1
+            save_period=10,
+            resume=True,
         )
 
         # Validate the model with test dataset
@@ -80,9 +81,9 @@ def train(overwrite: bool = False, visualize: bool = False):
             save_conf=True,
             save_crop=True,
             visualize=visualize,
-            project=models/dataset.name,
-            name='detect',
-            exist_ok=True
+            project=models / dataset.name,
+            name="detect",
+            exist_ok=True,
         )
 
 
@@ -94,10 +95,13 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     parser.add_argument(
         "-v", "--visualize", action="store_true", help="visualize model's layers"
     )
+    parser.add_argument(
+        "-r", "--resume", action="store_true", help="resume training"
+    )
     opt = parser.parse_known_args()[0] if known else parser.parse_args()
     return opt
 
 
 if __name__ == "__main__":
     opt = parse_opt()
-    train(overwrite=opt.overwrite, visualize=opt.visualize)
+    train(overwrite=opt.overwrite, visualize=opt.visualize, resume=opt.resume)
