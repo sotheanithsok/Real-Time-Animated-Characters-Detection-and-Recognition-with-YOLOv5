@@ -39,6 +39,7 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
 
         # Other paremeters
         device = 0
+        save_period=50
 
         # Train a model
         yolov5.train(
@@ -51,8 +52,8 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
             name="train",
             exist_ok=True,
             patience=patience,
-            save_period=10,
-            resume=True,
+            save_period=save_period,
+            resume=resume,
         )
 
         # Validate the model with test dataset
@@ -95,9 +96,7 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     parser.add_argument(
         "-v", "--visualize", action="store_true", help="visualize model's layers"
     )
-    parser.add_argument(
-        "-r", "--resume", action="store_true", help="resume training"
-    )
+    parser.add_argument("-r", "--resume", action="store_true", help="resume training")
     opt = parser.parse_known_args()[0] if known else parser.parse_args()
     return opt
 
