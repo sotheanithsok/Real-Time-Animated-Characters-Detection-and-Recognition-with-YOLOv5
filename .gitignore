@@ -113,8 +113,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-datasets/
-frames/
-videos/
-models/
-yolov5/
+_datasets/
+_frames/
+_videos/
+_models/
+_yolov5/

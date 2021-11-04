@@ -1,0 +1,23 @@
+{
+    "videos": "_vidoes",
+    "vidoes_urls": [
+        "https://youtu.be/rilFfbm7j8k",
+        "https://youtu.be/cqyziA30whE"
+    ],
+    "vidoes_names": [
+        "train.mp4",
+        "test.mp4"
+    ],
+    "frames": "_frames",
+    "yolov5": "_yolov5",
+    "yolov5_url": "https://github.com/ultralytics/yolov5/archive/refs/heads/master.zip",
+    "datasets": "_datasets",
+    "datasets_url": "https://mega.nz/file/GnJlnALb#Vc0fxITG2ktfyfpujE964Nsh3sJxWkJBCzEXijM7xXY",
+    "models": "_models",
+    "ratios": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+    ]
+}
