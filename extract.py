@@ -2,34 +2,40 @@ import argparse
 import cv2
 from pathlib import Path
 import numpy as np
-
+import json
 ROOT = Path(__file__).parent
 
 
 def extract(
     n_frames: int = 1000,
     overwrite: bool = False,
-    train_video_path: Path = ROOT / "videos/train.mp4",
-    frames_path: Path = ROOT / "frames",
 ) -> None:
+
+    # Load settings.json
+    with open(ROOT / "settings.json") as f:
+        settings = json.load(f)
+
+    train_video = ROOT/settings['videos']/settings['vidoes_names'][0]
+    frames = ROOT/settings['frames']
+
 
     # Remove all files in the directory if overwrite is true
     # Note: from distutils.dir_util import remove_tree cause directory creation problem due to race condition.
-    if overwrite and frames_path.exists():
-        for f in frames_path.glob("*.png"):
+    if overwrite and frames.exists():
+        for f in frames.glob("*.png"):
             f.unlink()
 
     # Create the directory if it doesn't exist
-    frames_path.mkdir(exist_ok=True)
+    frames.mkdir(exist_ok=True)
 
     # Create video capture object
-    cap = cv2.VideoCapture(str(train_video_path))
+    cap = cv2.VideoCapture(str(train_video))
 
     # Find the number of frames in the video
     nums_frame = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Find all frames that have been extracted already
-    existed_frames = [int(f.stem) for f in frames_path.glob("*.png")]
+    existed_frames = [int(f.stem) for f in frames.glob("*.png")]
 
     # Find all frames that haven't been extracted yet
     new_frames = [i for i in range(nums_frame) if i not in existed_frames]
@@ -43,7 +49,7 @@ def extract(
     for frame in picked_frames:
         cap.set(cv2.CAP_PROP_POS_FRAMES, frame)
         _, frame_val = cap.read()
-        cv2.imwrite(str(frames_path / f"{frame}.png"), frame_val)
+        cv2.imwrite(str(frames / f"{frame}.png"), frame_val)
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:
