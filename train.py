@@ -24,18 +24,16 @@ def train(overwrite: bool = False, visualize: bool = False):
     sys.path.append(str(yolov5))
     import _yolov5 as yolov5
 
-    # print(overwrite)
     if overwrite and models.exists():
         dir_util.remove_tree(models)
     models.mkdir(exist_ok=True)
 
     datasets = list(filter(lambda dataset: dataset.is_dir(), datasets.glob("*/")))
-    print(datasets)
 
     for dataset in datasets:
         # Hyperparameter
         pretrained_weights = "yolov5s.pt"
-        epochs = 2
+        epochs = 99999
         batch_size = 32
         patience = 100
 
@@ -53,6 +51,7 @@ def train(overwrite: bool = False, visualize: bool = False):
             name="train",
             exist_ok=True,
             patience=patience,
+            save_period = 1
         )
 
         # Validate the model with test dataset
