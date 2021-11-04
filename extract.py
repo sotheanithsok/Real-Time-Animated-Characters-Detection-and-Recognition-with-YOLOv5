@@ -15,6 +15,7 @@ def extract(
     with open(ROOT / "settings.json") as f:
         settings = json.load(f)
 
+    #Create variables
     train_video = ROOT/settings['videos']/settings['vidoes_names'][0]
     frames = ROOT/settings['frames']
 
