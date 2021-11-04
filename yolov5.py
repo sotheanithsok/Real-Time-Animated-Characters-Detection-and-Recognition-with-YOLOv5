@@ -71,7 +71,7 @@ def yolov5(
     with open(yolov5 / "__init__.py", "w") as f:
         f.seek(0)
         f.write(
-            "from yolov5.train import run as train\nfrom yolov5.val import run as val\nfrom yolov5.detect import run as detect"
+            "from _yolov5.train import run as train\nfrom _yolov5.val import run as val\nfrom _yolov5.detect import run as detect"
         )
 
     # Remove unnecessary files
