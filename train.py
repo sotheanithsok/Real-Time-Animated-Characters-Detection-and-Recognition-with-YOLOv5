@@ -1,4 +1,3 @@
-from os import name
 import sys
 from pathlib import Path
 from distutils import dir_util
@@ -33,17 +32,17 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
     for dataset in datasets:
         # Hyperparameter
         pretrained_weights = "yolov5s.pt"
-        epochs = 10000
-        batch_size = 32
+        epochs = 100000
+        batch_size = 40
         patience = 100
 
         # Other paremeters
         device = 0
-        save_period=50
+        save_period = 25
 
         # Train a model
         yolov5.train(
-            weights=models / "weights" / pretrained_weights,
+            weights=models / pretrained_weights,
             data=dataset / "data.yaml",
             epochs=epochs,
             batch_size=batch_size,
@@ -64,9 +63,6 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
             task="test",
             device=device,
             verbose=True,
-            save_txt=True,
-            save_conf=True,
-            save_json=True,
             project=models / dataset.name,
             name="test",
             exist_ok=True,
@@ -83,7 +79,7 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
             save_crop=True,
             visualize=visualize,
             project=models / dataset.name,
-            name="detect",
+            name="test",
             exist_ok=True,
         )
 
