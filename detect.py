@@ -21,6 +21,7 @@ def detect(overwrite: bool = False):
     models = ROOT / settings["models"]
     detect = ROOT / settings["detect"]
     yolov5 = ROOT / settings["yolov5"]
+    images_size = settings["datasets_images_size"][settings["datasets_select"]]
 
     # Add yolov5 to path and import it
     sys.path.append(str(yolov5))
@@ -49,7 +50,7 @@ def detect(overwrite: bool = False):
         yolov5.detect(
             weights=model / "train/weights/best.pt",
             source=video,
-            imgsz=[1280, 720],
+            imgsz=[images_size, images_size],
             device=0,
             project=detect.parent,
             name=detect.name,

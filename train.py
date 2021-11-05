@@ -18,6 +18,7 @@ def train(overwrite: bool = False):
     datasets = ROOT / settings["datasets"]
     models = ROOT / settings["models"]
     yolov5 = ROOT / settings["yolov5"]
+    images_size = settings["datasets_images_size"][settings["datasets_select"]]
 
     # Add yolov5 to path and import it
     sys.path.append(str(yolov5))
@@ -31,27 +32,36 @@ def train(overwrite: bool = False):
 
     for dataset in datasets:
         # Hyperparameter
-        pretrained_weights = "yolov5s.pt"
-        epochs = 100000
-        batch_size = 40
+        #XL: 1, L: 2
+        weights = "yolov5l.pt"
+        epochs = 3
+        batch_size = 2
         patience = 100
 
         # Other paremeters
         device = 0
         save_period = 25
 
+        # Pick the correct pretrained weights based on the dataset
+        weights = (
+            weights[: weights.find(".")] + "6" + weights[weights.find(".") :]
+            if settings["datasets_select"] == 1
+            else weights
+        )
+
         # Train a model
         yolov5.train(
-            weights=models / pretrained_weights,
+            weights=models / weights,
             data=dataset / "data.yaml",
             epochs=epochs,
             batch_size=batch_size,
+            imgsz=images_size,
             device=device,
             project=models / dataset.name,
             name="train",
             exist_ok=True,
             patience=patience,
-            save_period=save_period
+            save_period=save_period,
         )
 
         # Validate the model with test dataset
@@ -59,6 +69,7 @@ def train(overwrite: bool = False):
             data=dataset / "data.yaml",
             weights=models / dataset.name / "train/weights/best.pt",
             batch_size=batch_size,
+            imgsz=images_size,
             task="test",
             device=device,
             verbose=True,
@@ -71,7 +82,7 @@ def train(overwrite: bool = False):
         yolov5.detect(
             weights=models / dataset.name / "train/weights/best.pt",
             source=dataset / "test/images",
-            imgsz=[640, 640],
+            imgsz=[images_size, images_size],
             device=device,
             save_txt=True,
             save_conf=True,

@@ -19,7 +19,7 @@ def datasets(
 
     # Create variables
     datasets = ROOT / settings["datasets"]
-    url = settings["datasets_url"]
+    url = settings["datasets_url"][settings["datasets_select"]]
     ratios = settings["ratios"]
 
     # Remove all files in the directory if overwrite is true
