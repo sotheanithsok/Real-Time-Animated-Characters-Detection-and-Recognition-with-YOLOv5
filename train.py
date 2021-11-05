@@ -9,7 +9,7 @@ import argparse
 ROOT = Path(__file__).parent
 
 
-def train(overwrite: bool = False, visualize: bool = False, resume: bool = False):
+def train(overwrite: bool = False):
     # Load settings.json
     with open(ROOT / "settings.json") as f:
         settings = json.load(f)
@@ -32,7 +32,7 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
     for dataset in datasets:
         # Hyperparameter
         pretrained_weights = "yolov5s.pt"
-        epochs = 100000
+        epochs = 10
         batch_size = 40
         patience = 100
 
@@ -51,8 +51,7 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
             name="train",
             exist_ok=True,
             patience=patience,
-            save_period=save_period,
-            resume=resume,
+            save_period=save_period
         )
 
         # Validate the model with test dataset
@@ -77,7 +76,6 @@ def train(overwrite: bool = False, visualize: bool = False, resume: bool = False
             save_txt=True,
             save_conf=True,
             save_crop=True,
-            visualize=visualize,
             project=models / dataset.name,
             name="test",
             exist_ok=True,
@@ -89,9 +87,6 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     parser.add_argument(
         "-o", "--overwrite", action="store_true", help="overwrite the directory"
     )
-    parser.add_argument(
-        "-v", "--visualize", action="store_true", help="visualize model's layers"
-    )
     parser.add_argument("-r", "--resume", action="store_true", help="resume training")
     opt = parser.parse_known_args()[0] if known else parser.parse_args()
     return opt
@@ -99,4 +94,4 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
 
 if __name__ == "__main__":
     opt = parse_opt()
-    train(overwrite=opt.overwrite, visualize=opt.visualize, resume=opt.resume)
+    train(overwrite=opt.overwrite)
