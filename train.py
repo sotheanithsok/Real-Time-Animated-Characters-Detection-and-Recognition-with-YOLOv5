@@ -32,7 +32,7 @@ def train(overwrite: bool = False):
     for dataset in datasets:
         # Hyperparameter
         pretrained_weights = "yolov5s.pt"
-        epochs = 10
+        epochs = 100000
         batch_size = 40
         patience = 100
 
@@ -87,7 +87,6 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     parser.add_argument(
         "-o", "--overwrite", action="store_true", help="overwrite the directory"
     )
-    parser.add_argument("-r", "--resume", action="store_true", help="resume training")
     opt = parser.parse_known_args()[0] if known else parser.parse_args()
     return opt
 
