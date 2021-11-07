@@ -22,7 +22,10 @@
     ],
     "datasets_select": 0,
     "ratios": [
-        1.00
+        0.25,
+        0.5,
+        0.75,
+        1.0
     ],
     "models": "_models",
     "detect": "_detect"

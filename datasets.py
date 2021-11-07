@@ -12,7 +12,7 @@ ROOT = Path(__file__).parent
 
 
 def train_test_split(x: np.array, y: np.array, split: float = 0.7):
-    """Split given dataset into train dataset and test dataset
+    """Split a given dataset into train dataset and test dataset
 
     Args:
         x (np.array): data.
@@ -22,20 +22,82 @@ def train_test_split(x: np.array, y: np.array, split: float = 0.7):
     Returns:
         tuple: train_data, train_labels, test_data, test_labels
     """
-    x = np.array(x)
-    y = np.array(y)
-
     indices = np.random.choice(range(len(x)), int(split * len(x)), replace=False)
 
     return x[indices], y[indices], np.delete(x, indices), np.delete(y, indices)
+
+
+def train_valid_test_split(wd: Path, ratio: float = 1.0):
+    """Split the dataset in a given directory into three datasets: train, valid, and test.
+
+    Args:
+        wd (Path): dataset path.
+        ratio (float, optional): the percentage of data to keep. Defaults to 1.0.
+    """
+    # Form paths to the three datasets: train, valid, test
+    train = wd / "train"
+    valid = wd / "valid"
+    test = wd / "test"
+
+    # Create images folders for all datasets
+    (train / "images").mkdir(parents=True, exist_ok=True)
+    (valid / "images").mkdir(parents=True, exist_ok=True)
+    (test / "images").mkdir(parents=True, exist_ok=True)
+
+    # Create labels folders for all datasets
+    (train / "labels").mkdir(parents=True, exist_ok=True)
+    (valid / "labels").mkdir(parents=True, exist_ok=True)
+    (test / "labels").mkdir(parents=True, exist_ok=True)
+
+    # Find the dataset
+    images = np.array(list((train / "images").glob("*")))
+    labels = np.array(list((train / "labels").glob("*")))
+
+    # Remove data from the dataset until a certain percentage of data remained
+    size = len(images)
+    indices = np.random.choice(range(size), int((1.0 - ratio) * size), replace=False)
+    for image, label in zip(images[indices], labels[indices]):
+        image.unlink()
+        label.unlink()
+    images = np.delete(images, indices)
+    labels = np.delete(labels, indices)
+
+    # Split the dataset into train, valid, and test
+    train_images, train_labels, images, labels = train_test_split(images, labels)
+    valid_images, valid_labels, test_images, test_labels = train_test_split(
+        images, labels
+    )
+
+    # Move data from the train dataset into the valid dataset
+    for image, label in zip(valid_images, valid_labels):
+        os.rename(str(image), str(valid / "images" / image.name))
+        os.rename(str(label), str(valid / "labels" / label.name))
+
+    # Move data from the train dataset into the test dataset
+    for image, label in zip(test_images, test_labels):
+        os.rename(str(image), str(test / "images" / image.name))
+        os.rename(str(label), str(test / "labels" / label.name))
+
+    # Update data.yaml
+    yaml = YAML()
+    yaml.width = 4096
+    data = None
+    with open(wd / "data.yaml", "r") as f:
+        data = yaml.load(f)
+    if data:
+        data["train"] = str(train / "images")
+        data["val"] = str(valid / "images")
+        data["test"] = str(test / "images")
+    with open(wd / "data.yaml", "w") as f:
+        yaml.dump(data, f)
 
 
 def datasets(
     overwrite: bool = False,
 ):
     # Load settings.json
-    with open(ROOT / "settings.json") as f:
-        settings = json.load(f)
+    with open(ROOT / "settings.json") as fil:
+        settings = json.load(fil)
 
     # Create variables
     datasets = ROOT / settings["datasets"]
@@ -46,117 +108,43 @@ def datasets(
     if overwrite and datasets.exists():
         dir_util.remove_tree(str(datasets))
 
-    # Create the directory if it doesn't exist
+    # Make the directory if it doesn't exist
     datasets.mkdir(exist_ok=True)
 
-    # Download zip files and extract it to a temporary folder
-    datasets_zip = datasets / "dataset.zip"
-    datasets_unzip = datasets / "temp"
-    datasets_unzip.mkdir(exist_ok=True)
-
-    # If dataset zip file hasn't downlaod yet
-    if not datasets_zip.exists():
+    # Download the dataset zip file
+    dataset_zip = datasets / "dataset.zip"
+    if not dataset_zip.exists():
         try:
             m = Mega().login()
-            m.download_url(url, str(datasets_zip.parent), datasets_zip.name)
+            m.download_url(url, str(dataset_zip.parent), dataset_zip.name)
         except:
             pass
 
-    # Extract the zip file to a temporary folder
-    zipfile = ZipFile(datasets_zip)
-    zipfile.extractall(datasets_unzip)
+    # Extract the zip file into a temporary folder
+    temp = datasets / "temporary"
+    temp.mkdir(exist_ok=True)
+    zipfile = ZipFile(dataset_zip)
+    zipfile.extractall(temp)
     zipfile.close()
 
-    # Update images and lables filenames
-    for f in datasets_unzip.rglob("*"):
-        new_name = f.stem.split("_")[0]
-        f.rename(f.parent / f"{new_name}{f.suffix}")
+    # Update filenames of images and labels
+    for fil in temp.rglob("*"):
+        new_name = fil.stem.split("_")[0]
+        fil.rename(fil.parent / f"{new_name}{fil.suffix}")
 
-    # Split the dataset into train, val, and test
-    # Path to the 3 folders
-    train = datasets_unzip / "train"
-    val = datasets_unzip / "val"
-    test = datasets_unzip / "test"
+    # Create new datasets from the dataset based on given ratios
+    for ratio in ratios:
+        src = temp
+        dst = datasets / str(ratio)
 
-    # Create dataset folders
-    train.mkdir(exist_ok=True)
-    val.mkdir(exist_ok=True)
-    test.mkdir(exist_ok=True)
+        # Copy contents from the temporary folder to the new dataset folder
+        dir_util.copy_tree(str(src), str(dst))
 
-    # Create images folders
-    (train / "images").mkdir(exist_ok=True)
-    (val / "images").mkdir(exist_ok=True)
-    (test / "images").mkdir(exist_ok=True)
+        # Split the new dataset into train, val, test dataset with a given ratio
+        train_valid_test_split(dst, ratio)
 
-    # Create labels folders
-    (train / "labels").mkdir(exist_ok=True)
-    (val / "labels").mkdir(exist_ok=True)
-    (test / "labels").mkdir(exist_ok=True)
-
-    # Find all images and all labels
-    images = list((train / "images").glob("*"))
-    labels = list((train / "labels").glob("*"))
-
-    # Split all dataset into 70% training and 30% unused
-    train_images, train_labels, images, labels = train_test_split(images, labels)
-    val_images, val_labels, test_images, test_labels = train_test_split(images, labels)
-
-    # Move val dataset from train folder into val folder
-    for image, label in zip(val_images, val_labels):
-        os.rename(str(image), str(val / "images" / image.name))
-        os.rename(str(label), str(val / "labels" / label.name))
-
-    # Move test dataset from train folder into test folder
-    for image, label in zip(test_images, test_labels):
-        os.rename(str(image), str(test / "images" / image.name))
-        os.rename(str(label), str(test / "labels" / label.name))
-
-    # Split the dataset into 4 datasets with different size
-    # Form paths and create the four datasets folders
-    mini_datasets = [datasets / str(ratio) for ratio in ratios]
-    [mini_dataset.mkdir(exist_ok=True) for mini_dataset in mini_datasets]
-
-    # Start the splitting process
-    for mini_dataset, ratio in zip(mini_datasets, ratios):
-        # Copy contents from the temporary folder the the dataset folder
-        dir_util.copy_tree(
-            str(datasets_unzip),
-            str(mini_dataset),
-        )
-
-        # Update yaml file with train, val, and test paths of the dataset
-        train_path = mini_dataset / "train"
-        val_path = mini_dataset / "valid"
-        test_path = mini_dataset / "test"
-
-        yaml = YAML()
-        yaml.width = 4096
-        data = None
-
-        with open(mini_dataset / "data.yaml", "r") as f:
-            data = yaml.load(f)
-
-        if data:
-            data["train"] = str(train_path / "images")
-            data["val"] = str(val_path / "images")
-            data["test"] = str(test_path / "images")
-
-        with open(mini_dataset / "data.yaml", "w") as f:
-            yaml.dump(data, f)
-
-        # Adjust the size of train, val, and test data of the dataset
-        for local_path in [train_path, val_path, test_path]:
-            images = list((local_path / "images").glob("*"))
-            labels = list((local_path / "labels").glob("*"))
-            choices = np.random.choice(
-                range(0, len(images)), int((1 - ratio) * len(images)), replace=False
-            )
-            for i in choices:
-                images[i].unlink()
-                labels[i].unlink()
-
-    # Remove temp folders
-    dir_util.remove_tree(datasets_unzip)
+    # Remove the temporary folder
+    dir_util.remove_tree(temp)
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:

@@ -34,10 +34,10 @@ def train(overwrite: bool = False):
         # Hyperparameter
         # Max batch_size for 12gb vram
         # 1280   => XL: 1,  L: 4,    M: 6,      S: 14,       N: 26
-        # 640    => XL: 8,  L: 16,   M: 30,     S: 60,      N: 104
-        weights = "yolov5n.pt"
-        epochs = 300
-        batch_size = 104
+        # 640    => XL: 8,  L: 16,   M: 30,     S: 54,      N: 104
+        weights = "yolov5s.pt"
+        epochs = 200
+        batch_size = 56
         patience = 300
 
         # Other paremeters
