@@ -32,15 +32,16 @@ def train(overwrite: bool = False):
 
     for dataset in datasets:
         # Hyperparameter
-        #XL: 1, L: 2
-        weights = "yolov5l.pt"
-        epochs = 3
-        batch_size = 2
-        patience = 100
+        # Max batch_size for 12gb vram
+        # 1280   => XL: 1,  L: 4,    M: 6,      S: 14,       N: 26
+        # 640    => XL: 8,  L: 16,   M: 30,     S: 60,      N: 104
+        weights = "yolov5n.pt"
+        epochs = 300
+        batch_size = 104
+        patience = 300
 
         # Other paremeters
         device = 0
-        save_period = 25
 
         # Pick the correct pretrained weights based on the dataset
         weights = (
@@ -60,8 +61,7 @@ def train(overwrite: bool = False):
             project=models / dataset.name,
             name="train",
             exist_ok=True,
-            patience=patience,
-            save_period=save_period,
+            patience=patience
         )
 
         # Validate the model with test dataset

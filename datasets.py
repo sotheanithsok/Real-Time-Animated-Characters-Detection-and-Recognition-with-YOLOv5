@@ -6,8 +6,28 @@ import numpy as np
 import argparse
 from mega import Mega
 import json
+import os
 
 ROOT = Path(__file__).parent
+
+
+def train_test_split(x: np.array, y: np.array, split: float = 0.7):
+    """Split given dataset into train dataset and test dataset
+
+    Args:
+        x (np.array): data.
+        y (np.array): labels.
+        split (float, optional): splitting ratio. Defaults to 0.7.
+
+    Returns:
+        tuple: train_data, train_labels, test_data, test_labels
+    """
+    x = np.array(x)
+    y = np.array(y)
+
+    indices = np.random.choice(range(len(x)), int(split * len(x)), replace=False)
+
+    return x[indices], y[indices], np.delete(x, indices), np.delete(y, indices)
 
 
 def datasets(
@@ -51,6 +71,45 @@ def datasets(
     for f in datasets_unzip.rglob("*"):
         new_name = f.stem.split("_")[0]
         f.rename(f.parent / f"{new_name}{f.suffix}")
+
+    # Split the dataset into train, val, and test
+    # Path to the 3 folders
+    train = datasets_unzip / "train"
+    val = datasets_unzip / "val"
+    test = datasets_unzip / "test"
+
+    # Create dataset folders
+    train.mkdir(exist_ok=True)
+    val.mkdir(exist_ok=True)
+    test.mkdir(exist_ok=True)
+
+    # Create images folders
+    (train / "images").mkdir(exist_ok=True)
+    (val / "images").mkdir(exist_ok=True)
+    (test / "images").mkdir(exist_ok=True)
+
+    # Create labels folders
+    (train / "labels").mkdir(exist_ok=True)
+    (val / "labels").mkdir(exist_ok=True)
+    (test / "labels").mkdir(exist_ok=True)
+
+    # Find all images and all labels
+    images = list((train / "images").glob("*"))
+    labels = list((train / "labels").glob("*"))
+
+    # Split all dataset into 70% training and 30% unused
+    train_images, train_labels, images, labels = train_test_split(images, labels)
+    val_images, val_labels, test_images, test_labels = train_test_split(images, labels)
+
+    # Move val dataset from train folder into val folder
+    for image, label in zip(val_images, val_labels):
+        os.rename(str(image), str(val / "images" / image.name))
+        os.rename(str(label), str(val / "labels" / label.name))
+
+    # Move test dataset from train folder into test folder
+    for image, label in zip(test_images, test_labels):
+        os.rename(str(image), str(test / "images" / image.name))
+        os.rename(str(label), str(test / "labels" / label.name))
 
     # Split the dataset into 4 datasets with different size
     # Form paths and create the four datasets folders

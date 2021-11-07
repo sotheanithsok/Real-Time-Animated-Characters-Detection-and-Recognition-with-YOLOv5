@@ -13,18 +13,15 @@
     "yolov5_url": "https://github.com/ultralytics/yolov5/archive/refs/heads/master.zip",
     "datasets": "_datasets",
     "datasets_url": [
-        "https://mega.nz/file/GnJlnALb#Vc0fxITG2ktfyfpujE964Nsh3sJxWkJBCzEXijM7xXY",
-        "https://mega.nz/file/2rJznQAK#Vd4CO6Qz4LZWqQ4JsqRhXjhz32Ou5K7wlke-TdHW2cM"
+        "https://mega.nz/file/z3YCWBYC#n6Klmpr3XB6ula_WOSriem5W0gnNgEZk3tZBVm5wDQ8",
+        "https://mega.nz/file/uyAwFZaK#9lZAk6_Pn0W9yB40KlfZx7e5WjYgTjdzIVogt6qv1jA"
     ],
     "datasets_images_size": [
         640,
         1280
     ],
-    "datasets_select": 1,
+    "datasets_select": 0,
     "ratios": [
-        0.25,
-        0.50,
-        0.75,
         1.00
     ],
     "models": "_models",
