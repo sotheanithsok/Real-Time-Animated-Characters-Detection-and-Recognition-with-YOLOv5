@@ -34,11 +34,11 @@ def train(overwrite: bool = False):
         # Hyperparameter
         # Max batch_size for 12gb vram
         # 1280   => XL: 1,  L: 4,    M: 6,      S: 14,       N: 26
-        # 640    => XL: 8,  L: 16,   M: 30,     S: 54,      N: 104
-        weights = "yolov5s.pt"
-        epochs = 200
-        batch_size = 56
-        patience = 300
+        # 640    => XL: 8,  L: 16,   M: 28,     S: 54,      N: 96
+        weights = "yolov5m.pt"
+        epochs = 100000
+        batch_size = 16
+        patience = 100
 
         # Other paremeters
         device = 0
@@ -50,19 +50,30 @@ def train(overwrite: bool = False):
             else weights
         )
 
-        # Train a model
-        yolov5.train(
-            weights=models / weights,
-            data=dataset / "data.yaml",
-            epochs=epochs,
-            batch_size=batch_size,
-            imgsz=images_size,
-            device=device,
-            project=models / dataset.name,
-            name="train",
-            exist_ok=True,
-            patience=patience
-        )
+        # Check if the model is partially trained
+        last_pt = models / dataset.name / "train/weights/last.pt"
+        resume = last_pt.exists()
+
+        # Try to resume training
+        if resume:
+            try:
+                yolov5.train(resume=last_pt)
+            except:
+                pass
+        # Train a model from scratch
+        else:
+            yolov5.train(
+                weights=models / weights,
+                data=dataset / "data.yaml",
+                epochs=epochs,
+                batch_size=batch_size,
+                imgsz=images_size,
+                device=device,
+                project=models / dataset.name,
+                name="train",
+                exist_ok=True,
+                patience=patience,
+            )
 
         # Validate the model with test dataset
         yolov5.val(
@@ -86,7 +97,6 @@ def train(overwrite: bool = False):
             device=device,
             save_txt=True,
             save_conf=True,
-            save_crop=True,
             project=models / dataset.name,
             name="test",
             exist_ok=True,
