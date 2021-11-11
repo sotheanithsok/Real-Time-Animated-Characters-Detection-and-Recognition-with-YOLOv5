@@ -35,7 +35,7 @@ def train(overwrite: bool = False):
         # Max batch_size for 12gb vram
         # 1280   => XL: 1,  L: 4,    M: 6,      S: 14,       N: 26
         # 640    => XL: 8,  L: 16,   M: 28,     S: 54,      N: 96
-        weights = "yolov5m.pt"
+        weights = "yolov5s.pt"
         epochs = 100000
         batch_size = 16
         patience = 100
