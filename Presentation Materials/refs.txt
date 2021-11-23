@@ -1,0 +1,14 @@
+http://www.cs.toronto.edu/~rgrosse/courses/csc321_2017/slides/lec4.pdf
+http://rasbt.github.io/mlxtend/user_guide/general_concepts/gradient-optimization/
+https://hmkcode.com/ai/backpropagation-step-by-step/
+https://medium.com/@phelixlau/speed-accuracy-trade-offs-for-modern-convolutional-object-detectors-bbad4e4e0718
+https://www.researchgate.net/figure/A-simple-neural-network-with-two-hidden-layers-of-two-nodes-each-four-inputs-and-a_fig1_327637282
+https://towardsdatascience.com/whats-the-role-of-weights-and-bias-in-a-neural-network-4cf7e9888a0f?gi=e0eb90752e82
+https://towardsdatascience.com/map-mean-average-precision-might-confuse-you-5956f1bfa9e2
+https://towardsdatascience.com/non-maximum-suppression-nms-93ce178e177c
+https://towardsdatascience.com/yolo-v3-explained-ff5b850390f
+https://www.cc.gatech.edu/~san37/post/dlhc-cnn/
+https://arxiv.org/abs/1506.02640
+https://arxiv.org/abs/1612.08242
+https://arxiv.org/abs/1804.02767
+https://blog.roboflow.com/getting-started-with-roboflow/
