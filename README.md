@@ -3,15 +3,35 @@
 ## Description
 Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom, Jerry, and Spike.
 
-## Authors
- - [Sotheanith Sok](https://github.com/sotheanith)
+## Dataset
+ - Source: [Tom & Jerry | Triple Trouble | Classic Cartoon Compilation | WB Kids](https://youtu.be/rilFfbm7j8k)
+ - Images: 1000
+   - Has an object: 931
+   - No object: 69
+ - Object Instances:
+   - Tom: 562
+   - Spike: 538
+   - Jerry: 490
+ - Split Ratio:
+   - Train: 70%
+   - Validation: 21%
+   - Test: 9%   
 
 ## Performances
-| Model  	| Variant 	| Batch Size 	| Val mAP@.5 	| Test mAP@.5 	|
-|--------	|---------	|------------	|------------	|-------------	|
-| Nano   	| 640x640 	| 16         	| 0.989      	| 0.977       	|
-| Small  	| 640x640 	| 16         	| 0.98       	| 0.985       	|
-| Medium 	| 640x640 	| 16         	| 0.983      	| 0.986       	|
+| Model  	| Input Size 	| Batch Size 	| Dataset Size 	| Val mAP@.5 	| Test mAP@.5 	|
+|--------	|------------	|------------	|--------------	|------------	|-------------	|
+| Nano   	| 640x640    	| 16         	| 25%          	| 0.964      	| 0.989       	|
+| Nano   	| 640x640    	| 16         	| 50%          	| 0.969      	| 0.953       	|
+| Nano   	| 640x640    	| 16         	| 75%          	| 0.989      	| 0.982       	|
+| Nano   	| 640x640    	| 16         	| 100%         	| 0.989      	| 0.977       	|
+| Small  	| 640x640    	| 16         	| 25%          	| 0.989      	| 0.921       	|
+| Small  	| 640x640    	| 16         	| 50%          	| 0.983      	| 0.935       	|
+| Small  	| 640x640    	| 16         	| 75%          	| 0.977      	| 0.98        	|
+| Small  	| 640x640    	| 16         	| 100%         	| 0.98       	| 0.985       	|
+| Medium 	| 640x640    	| 16         	| 25%          	| 0.946      	| 0.914       	|
+| Medium 	| 640x640    	| 16         	| 50%          	| 0.984      	| 0.982       	|
+| Medium 	| 640x640    	| 16         	| 75%          	| 0.971      	| 0.992       	|
+| Medium 	| 640x640    	| 16         	| 100%         	| 0.983      	| 0.986       	|
 
 ## Hardwares
  - CPU: [AMD Ryzen 9 5900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-5900x)
@@ -46,6 +66,9 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
  - [ruamel.yaml](https://pypi.org/project/ruamel.yaml/)
  - [urllib3](https://pypi.org/project/urllib3/)
  - [YOLOv5](https://github.com/ultralytics/yolov5)
+
+## Authors
+ - [Sotheanith Sok](https://github.com/sotheanith)
 
 ## Course
  - [CECS 553 - Machine Vision](http://catalog.csulb.edu/preview_course_nopop.php?catoid=5&coid=40043)
