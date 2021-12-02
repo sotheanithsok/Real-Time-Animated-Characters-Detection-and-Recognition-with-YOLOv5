@@ -1,4 +1,8 @@
-<h1 align="center"> Real-Time Animated Characters Detection and Recognition with YOLOv5 </h1>
+<p align="center">
+  <img src="Presentation/demo.gif" alt="animated" />
+</p>
+
+<h1 align="center"> Real-Time Animated Characters Detection and Recognition with YOLOv5</h1>
 
 ## Description
 Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom, Jerry, and Spike.
