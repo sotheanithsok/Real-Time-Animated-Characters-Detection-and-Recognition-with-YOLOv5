@@ -95,6 +95,11 @@ def train_valid_test_split(wd: Path, ratio: float = 1.0):
 def datasets(
     overwrite: bool = False,
 ):
+    """Download dataset.zip from Mega.io and split it into multiple datasets of various sizes.
+
+    Args:
+        overwrite (bool, optional): overwrite existing files. Defaults to False.
+    """
     # Load settings.json
     with open(ROOT / "settings.json") as fil:
         settings = json.load(fil)
@@ -148,6 +153,14 @@ def datasets(
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:
+    """Set up command line arguments
+
+    Args:
+        known (bool, optional): if arguments are known, throw an error if an unknown argument are passed in. Defaults to False.
+
+    Returns:
+        argparse.Namespace: parsed arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-o", "--overwrite", action="store_true", help="overwrite the directory"
@@ -156,6 +169,7 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     return opt
 
 
+# Run this code if this script is called from a command line
 if __name__ == "__main__":
     opt = parse_opt()
     datasets(overwrite=opt.overwrite)

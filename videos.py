@@ -10,6 +10,11 @@ ROOT = Path(__file__).parent
 def videos(
     overwrite: bool = False,
 ) -> None:
+    """Download the train video and the test video from YouTube and save them to files.
+
+    Args:
+        overwrite (bool, optional): overwrite existing files. Defaults to False.
+    """
 
     # Load settings.json
     with open(ROOT / "settings.json") as f:
@@ -34,6 +39,14 @@ def videos(
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:
+    """Set up command line arguments
+
+    Args:
+        known (bool, optional): if arguments are known, throw an error if an unknown argument are passed in. Defaults to False.
+
+    Returns:
+        argparse.Namespace: parsed arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-o", "--overwrite", action="store_true", help="overwrite the directory"
@@ -42,6 +55,7 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     return opt
 
 
+# Run this code if this script is called from a command line
 if __name__ == "__main__":
     opt = parse_opt()
     videos(overwrite=opt.overwrite)

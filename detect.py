@@ -10,6 +10,11 @@ ROOT = Path(__file__).parent
 
 
 def detect(overwrite: bool = False):
+    """Utilize existing models to detect characters in all vidoes.
+
+    Args:
+        overwrite (bool, optional): overwrite existing files. Defaults to False.
+    """
 
     # Load settings.json
     with open(ROOT / "settings.json", "r") as f:
@@ -61,6 +66,14 @@ def detect(overwrite: bool = False):
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:
+    """Set up command line arguments
+
+    Args:
+        known (bool, optional): if arguments are known, throw an error if an unknown argument are passed in. Defaults to False.
+
+    Returns:
+        argparse.Namespace: parsed arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-o", "--overwrite", action="store_true", help="overwrite the directory"
@@ -69,6 +82,7 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     return opt
 
 
+# Run this code if this script is called from a command line
 if __name__ == "__main__":
     opt = parse_opt()
     detect(overwrite=opt.overwrite)

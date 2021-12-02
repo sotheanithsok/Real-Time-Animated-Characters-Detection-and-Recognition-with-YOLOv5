@@ -3,6 +3,7 @@ import cv2
 from pathlib import Path
 import numpy as np
 import json
+
 ROOT = Path(__file__).parent
 
 
@@ -10,15 +11,19 @@ def extract(
     n_frames: int = 1000,
     overwrite: bool = False,
 ) -> None:
+    """Extract a certain number from frames from the train video without duplication.
 
+    Args:
+        n_frames (int, optional): the number of frames to extract. Defaults to 1000.
+        overwrite (bool, optional): overwrite existing files. Defaults to False.
+    """
     # Load settings.json
     with open(ROOT / "settings.json") as f:
         settings = json.load(f)
 
-    #Create variables
-    train_video = ROOT/settings['videos']/settings['vidoes_names'][0]
-    frames = ROOT/settings['frames']
-
+    # Create variables
+    train_video = ROOT / settings["videos"] / settings["vidoes_names"][0]
+    frames = ROOT / settings["frames"]
 
     # Remove all files in the directory if overwrite is true
     # Note: from distutils.dir_util import remove_tree cause directory creation problem due to race condition.
@@ -54,6 +59,14 @@ def extract(
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:
+    """Set up command line arguments
+
+    Args:
+        known (bool, optional): if arguments are known, throw an error if an unknown argument are passed in. Defaults to False.
+
+    Returns:
+        argparse.Namespace: parsed arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--n_frames", "-n", default=1000, type=int, help="number of frames to extact"
@@ -65,6 +78,7 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     return opt
 
 
+# Run this code if this script is called from a command line
 if __name__ == "__main__":
     opt = parse_opt()
     extract(n_frames=opt.n_frames, overwrite=opt.overwrite)

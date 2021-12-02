@@ -9,10 +9,10 @@ ROOT = Path(__file__).parent
 
 
 def yolov5_no_update(wd: Path):
-    """Modify YOLOv5 files such that it stops checking for update with git when training. 
+    """Modify YOLOv5 files such that it stops checking for update with git when training.
 
     Args:
-        wd (Path): YOLOv5 path. 
+        wd (Path): YOLOv5 path.
     """
     with open(wd / "train.py", "r+") as f:
         lines = f.readlines()
@@ -60,6 +60,11 @@ def yolov5_add_init(wd: Path):
 def yolov5(
     overwrite: bool = False,
 ) -> None:
+    """Download YOLOv5 source code from github.
+
+    Args:
+        overwrite (bool, optional): overwrite existing files. Defaults to False.
+    """
 
     # Load settings.json
     with open(ROOT / "settings.json") as f:
@@ -103,6 +108,14 @@ def yolov5(
 
 
 def parse_opt(known: bool = False) -> argparse.Namespace:
+    """Set up command line arguments
+
+    Args:
+        known (bool, optional): if arguments are known, throw an error if an unknown argument are passed in. Defaults to False.
+
+    Returns:
+        argparse.Namespace: parsed arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-o", "--overwrite", action="store_true", help="overwrite the directory"
@@ -111,6 +124,7 @@ def parse_opt(known: bool = False) -> argparse.Namespace:
     return opt
 
 
+# Run this code if this script is called from a command line
 if __name__ == "__main__":
     opt = parse_opt()
     yolov5(overwrite=opt.overwrite)
