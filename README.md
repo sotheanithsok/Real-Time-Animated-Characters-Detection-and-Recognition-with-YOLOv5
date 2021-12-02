@@ -4,7 +4,7 @@
 Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom, Jerry, and Spike.
 
 ## Authors
- - Sotheanith Sok
+ - [Sotheanith Sok](https://github.com/sotheanith)
 
 ## Performances
 | Model  	| Variant 	| Batch Size 	| Val mAP@.5 	| Test mAP@.5 	|
@@ -14,39 +14,38 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
 | Medium 	| 640x640 	| 16         	| 0.983      	| 0.986       	|
 
 ## Hardwares
- - CPU: Ryzen 5900x
- - Memory: 32GB @ 3600 Mhz
- - GPU: RTX 3060 12GB
- - Storage: WD Blue Hard Drive
+ - CPU: [AMD Ryzen 9 5900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-5900x)
+ - Memory: [G.Skill Trident Z 32GB @ 3600 Mhz](https://www.amazon.com/G-Skill-TridentZ-288-Pin-3600MHz-F4-3600C17D-16GTZR/dp/B01N4V82FW)
+ - GPU: [EVGA GeForce RTX 3060](https://www.evga.com/products/product.aspx?pn=12G-P5-3657-KR)
+ - Storage: [Western Digital 1TB WD Blue](https://www.westerndigital.com/products/internal-drives/wd-blue-desktop-sata-hdd#WD10EZEX)
 
 ## Quick Links
- - 640p Dataset
- - 1280p Dataset
- - Detection Demo Videos
- - Presentation
- - Test Video
- - Train Video
+ - [640p Dataset](https://mega.nz/file/z3YCWBYC#n6Klmpr3XB6ula_WOSriem5W0gnNgEZk3tZBVm5wDQ8)
+ - [1280p Dataset](https://mega.nz/file/uyAwFZaK#9lZAk6_Pn0W9yB40KlfZx7e5WjYgTjdzIVogt6qv1jA)
+ - [Detection Demo Videos](https://drive.google.com/drive/folders/1lrzEbeN1YUsLuAcWPxh-CivSbFcn73Ns?usp=sharing)
+ - [Presentation](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/Presentation/Presentation.pdf)
+ - [Train Video](https://youtu.be/rilFfbm7j8k)
+ - [Test Video](https://youtu.be/cqyziA30whE)
 
 ## Source Codes
- - videos.py
- - extract.py
- - dataset.py
- - yolov5.py
- - train.py
- - detect.py
- - settings.json
- - requirements.txt
+ - [videos.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/videos.py)
+ - [extract.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/extract.py)
+ - [dataset.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/datasets.py)
+ - [yolov5.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/yolov5.py)
+ - [train.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/train.py)
+ - [detect.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/detect.py)
+ - [settings.json](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/settings.json)
+ - [requirements.txt](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/requirements.txt)
 
 ## Prerequisites
- - cv2
- - Mega.py
- - Python
- - Pytorch
- - PyTube
- - ruamel.yaml
- - urllib3
- - YOLOv5
+ - [Python](https://www.python.org/)
+ - [OpenCV](https://pypi.org/project/opencv-python/)
+ - [Mega.py](https://pypi.org/project/mega.py/)
+ - [Torch](https://pypi.org/project/torch/)
+ - [PyTube](https://pypi.org/project/pytube/)
+ - [ruamel.yaml](https://pypi.org/project/ruamel.yaml/)
+ - [urllib3](https://pypi.org/project/urllib3/)
+ - [YOLOv5](https://github.com/ultralytics/yolov5)
 
 ## Course
- - CECS 553 - Machine Vision
-
+ - [CECS 553 - Machine Vision](http://catalog.csulb.edu/preview_course_nopop.php?catoid=5&coid=40043)
