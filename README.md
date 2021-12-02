@@ -21,6 +21,13 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
    - Validation: 21%
    - Test: 9%   
 
+## Detection Demo
+ -  Source: [Tom & Jerry | Best Buddies 🐭🐱🐶 | Classic Cartoon Compilation | WB Kids](https://youtu.be/cqyziA30whE)
+ -  Results: 
+    - [Nano Models](https://drive.google.com/file/d/15pBeLGxjKFzAhazj6JQTsIEuq2SqfcPQ/view?usp=sharing)  
+    - [Small Models](https://drive.google.com/file/d/11vbOvt5os2u_owNhVP4lZStvVSJT8ruX/view?usp=sharing)
+    - [Medium Models](https://drive.google.com/file/d/1F5_4IH86O3pQ7JtOlhiX3UkdB5q7R2F_/view?usp=sharing)
+
 ## Performances
 | Model  	| Input Size 	| Batch Size 	| Dataset Size 	| Val mAP@.5 	| Test mAP@.5 	|
 |--------	|------------	|------------	|--------------	|------------	|-------------	|
@@ -46,7 +53,7 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
 ## Quick Links
  - [640p Dataset](https://mega.nz/file/z3YCWBYC#n6Klmpr3XB6ula_WOSriem5W0gnNgEZk3tZBVm5wDQ8)
  - [1280p Dataset](https://mega.nz/file/uyAwFZaK#9lZAk6_Pn0W9yB40KlfZx7e5WjYgTjdzIVogt6qv1jA)
- - [Detection Demo Videos](https://drive.google.com/drive/folders/1lrzEbeN1YUsLuAcWPxh-CivSbFcn73Ns?usp=sharing)
+ - [Detection Demo Videos Playlist](https://drive.google.com/drive/folders/1lrzEbeN1YUsLuAcWPxh-CivSbFcn73Ns?usp=sharing)
  - [Presentation](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/Presentation/Presentation.pdf)
  - [Train Video](https://youtu.be/rilFfbm7j8k)
  - [Test Video](https://youtu.be/cqyziA30whE)
