@@ -79,7 +79,7 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
  - [YOLOv5](https://github.com/ultralytics/yolov5)
 
 ## Authors
- - [Sotheanith Sok](https://github.com/sotheanith)
+ - [Sotheanith Sok](https://github.com/sotheanith-sok)
 
 ## Course
  - [CECS 553 - Machine Vision](http://catalog.csulb.edu/preview_course_nopop.php?catoid=5&coid=40043)
