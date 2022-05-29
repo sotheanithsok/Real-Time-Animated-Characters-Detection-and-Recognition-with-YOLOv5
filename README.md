@@ -24,9 +24,9 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
 ## Detection Demo
  -  Source: [Tom & Jerry | Best Buddies 🐭🐱🐶 | Classic Cartoon Compilation | WB Kids](https://youtu.be/cqyziA30whE)
  -  Results: 
-    - [Nano Models]([https://drive.google.com/file/d/15pBeLGxjKFzAhazj6JQTsIEuq2SqfcPQ/view?usp=sharing](https://mega.nz/file/Li5HXTba#7_Fi9IEGk0NVrF-QdCIh7FXhGh_-8vJSIV_qmBouBdg))  
-    - [Small Models]([https://drive.google.com/file/d/11vbOvt5os2u_owNhVP4lZStvVSJT8ruX/view?usp=sharing](https://mega.nz/file/HqZVBZBA#ajHw8FsTsSeallv9O6upVg1V_44G6S5abCqPBPep4L8))
-    - [Medium Models]([https://drive.google.com/file/d/1F5_4IH86O3pQ7JtOlhiX3UkdB5q7R2F_/view?usp=sharing](https://mega.nz/file/6uRRDSyB#aplsy1n9Nb2NH7-Jx6wz9AnIAWMFb_iaUe5b1qIqmKY))
+    - [Nano Models](https://mega.nz/file/Li5HXTba#7_Fi9IEGk0NVrF-QdCIh7FXhGh_-8vJSIV_qmBouBdg)
+    - [Small Models](https://mega.nz/file/HqZVBZBA#ajHw8FsTsSeallv9O6upVg1V_44G6S5abCqPBPep4L8)
+    - [Medium Models](https://mega.nz/file/6uRRDSyB#aplsy1n9Nb2NH7-Jx6wz9AnIAWMFb_iaUe5b1qIqmKY)
 
 ## Performances
 | Model  	| Input Size 	| Batch Size 	| Dataset Size 	| Val mAP@.5 	| Test mAP@.5 	|
