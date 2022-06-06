@@ -1,32 +1,32 @@
-<p align="center">
-  <img src="Presentation/demo.gif" alt="animated" />
-</p>
+<!-- Readme Start here -->
 
-<h1 align="center"> Real-Time Animated Characters Detection and Recognition with YOLOv5</h1>
+<!-- Load logo from readme/logo.jpg -->
+<div align="center">
+  <img src="readme/logo.gif" alt="logo" />
+</div>
 
-## Description
+
+<!-- Title -->
+<h1 align="center" style="border: none">
+Real-Time Animated Characters Detection and Recognition with YOLOv5
+</h1>
+
+
+<!-- Shield IO - very nice icons -->
+<div align="center">
+
+[![Contributors][contributors_shield]][contributors_url]
+[![Forks][forks_shield]][forks_url]
+[![Stargazers][stars_shield]][stars_url]
+[![Issues][issues_shield]][issues_url]
+[![MIT License][license_shield]][license_url]
+[![LinkedIn][linkedin_shield]][linkedin_url]
+
+</div>
+
+
+<!-- Description -->
 Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom, Jerry, and Spike.
-
-## Dataset
- - Source: [Tom & Jerry | Triple Trouble | Classic Cartoon Compilation | WB Kids](https://youtu.be/rilFfbm7j8k)
- - Images: 1000
-   - Has an object: 931
-   - No object: 69
- - Object Instances:
-   - Tom: 562
-   - Spike: 538
-   - Jerry: 490
- - Split Ratio:
-   - Train: 70%
-   - Validation: 21%
-   - Test: 9%   
-
-## Detection Demo
- -  Source: [Tom & Jerry | Best Buddies 🐭🐱🐶 | Classic Cartoon Compilation | WB Kids](https://youtu.be/cqyziA30whE)
- -  Results: 
-    - [Nano Models](https://mega.nz/file/Li5HXTba#7_Fi9IEGk0NVrF-QdCIh7FXhGh_-8vJSIV_qmBouBdg)
-    - [Small Models](https://mega.nz/file/HqZVBZBA#ajHw8FsTsSeallv9O6upVg1V_44G6S5abCqPBPep4L8)
-    - [Medium Models](https://mega.nz/file/6uRRDSyB#aplsy1n9Nb2NH7-Jx6wz9AnIAWMFb_iaUe5b1qIqmKY)
 
 ## Performances
 | Model  	| Input Size 	| Batch Size 	| Dataset Size 	| Val mAP@.5 	| Test mAP@.5 	|
@@ -44,42 +44,93 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
 | Medium 	| 640x640    	| 16         	| 75%          	| 0.971      	| 0.992       	|
 | Medium 	| 640x640    	| 16         	| 100%         	| 0.983      	| 0.986       	|
 
+## [Training Dataset]
+ - Images: 1000
+   - Has an object: 931
+   - No object: 69
+ - Object Instances:
+   - Tom: 562
+   - Spike: 538
+   - Jerry: 490
+ - Split Ratio:
+   - Train: 70%
+   - Validation: 21%
+   - Test: 9%   
+
+## [Testing Dataset]
+  - [Nano Models]
+  - [Small Models]
+  - [Medium Models]
+
+## Documentation
+  - [Presentation]
+
 ## Hardwares
- - CPU: [AMD Ryzen 9 5900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-5900x)
- - Memory: [G.Skill Trident Z 32GB @ 3600 Mhz](https://www.amazon.com/G-Skill-TridentZ-288-Pin-3600MHz-F4-3600C17D-16GTZR/dp/B01N4V82FW)
- - GPU: [EVGA GeForce RTX 3060](https://www.evga.com/products/product.aspx?pn=12G-P5-3657-KR)
- - Storage: [Western Digital 1TB WD Blue](https://www.westerndigital.com/products/internal-drives/wd-blue-desktop-sata-hdd#WD10EZEX)
+ - CPU: [AMD Ryzen 9 5900X]
+ - Memory: [G.Skill Trident Z 32GB @ 3600 Mhz]
+ - GPU: [EVGA GeForce RTX 3060]
+ - Storage: [Western Digital 1TB WD Blue]
 
-## Quick Links
- - [640p Dataset](https://mega.nz/file/z3YCWBYC#n6Klmpr3XB6ula_WOSriem5W0gnNgEZk3tZBVm5wDQ8)
- - [1280p Dataset](https://mega.nz/file/uyAwFZaK#9lZAk6_Pn0W9yB40KlfZx7e5WjYgTjdzIVogt6qv1jA)
- - [Detection Demo Videos Playlist](https://drive.google.com/drive/folders/1lrzEbeN1YUsLuAcWPxh-CivSbFcn73Ns?usp=sharing)
- - [Presentation](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/Presentation/Presentation.pdf)
- - [Train Video](https://youtu.be/rilFfbm7j8k)
- - [Test Video](https://youtu.be/cqyziA30whE)
+<!-- Include your major tools and frameworks -->
+## Built With
+- [Python]
+- [Torch]
+- [YOLOv5]
 
-## Source Codes
- - [videos.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/videos.py)
- - [extract.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/extract.py)
- - [dataset.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/datasets.py)
- - [yolov5.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/yolov5.py)
- - [train.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/train.py)
- - [detect.py](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/detect.py)
- - [settings.json](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/settings.json)
- - [requirements.txt](https://github.com/sotheanith/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/main/requirements.txt)
 
-## Prerequisites
- - [Python](https://www.python.org/)
- - [OpenCV](https://pypi.org/project/opencv-python/)
- - [Mega.py](https://pypi.org/project/mega.py/)
- - [Torch](https://pypi.org/project/torch/)
- - [PyTube](https://pypi.org/project/pytube/)
- - [ruamel.yaml](https://pypi.org/project/ruamel.yaml/)
- - [urllib3](https://pypi.org/project/urllib3/)
- - [YOLOv5](https://github.com/ultralytics/yolov5)
-
-## Authors
- - [Sotheanith Sok](https://github.com/sotheanith-sok)
+<!-- Collaborators information -->
+## Collaborators
+- [Sotheanith Sok]
 
 ## Course
- - [CECS 553 - Machine Vision](http://catalog.csulb.edu/preview_course_nopop.php?catoid=5&coid=40043)
+- [CECS 553 - Machine Vision]
+
+
+<!-- License -->
+## License
+This project is licensed under the MIT License - see the [LICENSE.md][license_url] file for details
+
+
+<!-- Shoutout to other projects, plugin, or minor tools -->
+## Acknowledgments
+Special thank to
+- [Best-README-Template] - the readme template.
+
+
+<!-- References -->
+<!-- Shield Icons-->
+[contributors_shield]: https://img.shields.io/github/contributors/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5.svg?style=for-the-badge
+[forks_shield]: https://img.shields.io/github/forks/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5.svg?style=for-the-badge
+[stars_shield]: https://img.shields.io/github/stars/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5.svg?style=for-the-badge
+[issues_shield]: https://img.shields.io/github/issues/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5.svg?style=for-the-badge
+[license_shield]: https://img.shields.io/github/license/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5.svg?style=for-the-badge
+[linkedin_shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
+<!-- Shield URLs -->
+[contributors_url]: https://github.com/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/graphs/contributors
+[forks_url]: https://github.com/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/network/members
+[stars_url]: https://github.com/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/stargazers
+[issues_url]: https://github.com/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/issues
+[license_url]: https://github.com/sotheanithsok/Real-Time-Animated-Characters-Detection-and-Recognition-with-YOLOv5/blob/master/LICENSE
+[linkedin_url]: https://www.linkedin.com/in/sotheanith-sok-969ab0b3/
+
+<!-- Other links -->
+[Sotheanith Sok]: https://github.com/sotheanithsok
+[Best-README-Template]: https://github.com/othneildrew/Best-README-Template
+
+[Training Dataset]: https://youtu.be/rilFfbm7j8k
+[Testing Dataset]: https://youtu.be/cqyziA30whE
+[Nano Models]: https://mega.nz/file/Li5HXTba#7_Fi9IEGk0NVrF-QdCIh7FXhGh_-8vJSIV_qmBouBdg
+[Small Models]: https://mega.nz/file/HqZVBZBA#ajHw8FsTsSeallv9O6upVg1V_44G6S5abCqPBPep4L8
+[Medium Models]: https://mega.nz/file/6uRRDSyB#aplsy1n9Nb2NH7-Jx6wz9AnIAWMFb_iaUe5b1qIqmKY
+[Presentation]: Presentation/Presentation.pdf
+[AMD Ryzen 9 5900X]:[https://www.amd.com/en/products/cpu/amd-ryzen-9-5900x]
+[G.Skill Trident Z 32GB @ 3600 Mhz]:[https://www.amazon.com/G-Skill-TridentZ-288-Pin-3600MHz-F4-3600C17D-16GTZR/dp/B01N4V82FW]
+[EVGA GeForce RTX 3060]:[https://www.evga.com/products/product.aspx?pn=12G-P5-3657-KR]
+[Western Digital 1TB WD Blue]:[https://www.westerndigital.com/products/internal-drives/wd-blue-desktop-sata-hdd#WD10EZEX]
+[Python]: https://www.python.org/
+[Torch]: https://pypi.org/project/torch/
+[YOLOv5]: https://github.com/ultralytics/yolov5
+[CECS 553 - Machine Vision]: http://catalog.csulb.edu/preview_course_nopop.php?catoid=5&coid=40043
+
+
