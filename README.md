@@ -66,10 +66,10 @@ Examine the performance of the YOLOv5 algorithm in detecting and recognizing Tom
   - [Presentation]
 
 ## Hardwares
- - CPU: [AMD Ryzen 9 5900X]
- - Memory: [G.Skill Trident Z 32GB @ 3600 Mhz]
- - GPU: [EVGA GeForce RTX 3060]
- - Storage: [Western Digital 1TB WD Blue]
+ - CPU: [AMD Ryzen 9 5900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-5900x)
+ - Memory: [G.Skill Trident Z 32GB @ 3600 Mhz](https://www.amazon.com/G-Skill-TridentZ-288-Pin-3600MHz-F4-3600C17D-16GTZR/dp/B01N4V82FW)
+ - GPU: [EVGA GeForce RTX 3060](https://www.evga.com/products/product.aspx?pn=12G-P5-3657-KR)
+ - Storage: [Western Digital 1TB WD Blue](https://www.westerndigital.com/products/internal-drives/wd-blue-desktop-sata-hdd#WD10EZEX)
 
 <!-- Include your major tools and frameworks -->
 ## Built With
@@ -124,10 +124,6 @@ Special thank to
 [Small Models]: https://mega.nz/file/HqZVBZBA#ajHw8FsTsSeallv9O6upVg1V_44G6S5abCqPBPep4L8
 [Medium Models]: https://mega.nz/file/6uRRDSyB#aplsy1n9Nb2NH7-Jx6wz9AnIAWMFb_iaUe5b1qIqmKY
 [Presentation]: Presentation/Presentation.pdf
-[AMD Ryzen 9 5900X]:[https://www.amd.com/en/products/cpu/amd-ryzen-9-5900x]
-[G.Skill Trident Z 32GB @ 3600 Mhz]:[https://www.amazon.com/G-Skill-TridentZ-288-Pin-3600MHz-F4-3600C17D-16GTZR/dp/B01N4V82FW]
-[EVGA GeForce RTX 3060]:[https://www.evga.com/products/product.aspx?pn=12G-P5-3657-KR]
-[Western Digital 1TB WD Blue]:[https://www.westerndigital.com/products/internal-drives/wd-blue-desktop-sata-hdd#WD10EZEX]
 [Python]: https://www.python.org/
 [Torch]: https://pypi.org/project/torch/
 [YOLOv5]: https://github.com/ultralytics/yolov5
